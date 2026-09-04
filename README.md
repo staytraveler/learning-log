@@ -36,5 +36,5 @@
 </details>
 
 ## 🔗 포트폴리오
-
-- [추가예정](#) — 설명
+- [librarian-exam-tracker](https://librarian-exam-tracker.vercel.app) — 사서직 임용시험 모의고사 회차별 성적 분석 도구 (배포 주소)
+  - [GitHub 저장소](https://github.com/staytraveler/librarian-exam-tracker)
