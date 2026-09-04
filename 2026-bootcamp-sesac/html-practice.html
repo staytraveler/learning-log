@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 과제-김용현</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>아이스크림 매니저</h1>
+
+        <h4>
+            아이스크림 메뉴를 등록하고 조회하고 관리할수 있는 메뉴 관리 시스템입니다.
+        </h4>
+
+        <ul>
+            <li><a href="#service">서비스 소개</a></li>
+            <li><a href="#category">카 테 고 리</a></li>
+            <li><a href="#discount">할인 일정</a></li>
+            <li><a href="#submit">메뉴 등록</a></li>
+        </ul>
+    </header>
+
+    <hr>
+    <hr>
+
+    <main>
+        <section id="service">
+            <h3>서비스 소개</h3>
+            <pre>
+            <strong>아이스크림 매니저</strong>는
+            전 세계 다양한 아이스크림을 한눈에 확인할수 있습니다.
+            특히 이번 <del>8월</del> <b>9월</b>에는 <mark>신상 아이스크림</mark>은 할인됩니다.
+            </pre>
+        </section>
+        <hr>
+        <section id="category">
+            <h3>카테고리 목록</h3>
+            <ul>
+                <li>콘</li>
+                <li>컵</li>
+                <li>바(막대)</li>
+                <li>파인트</li>
+            </ul>
+            <h3>대표 메뉴 사진</h3>
+            <figure>
+
+                <img src="image/ice.PNG" alt="아이스크림 사진" width="400" height="500">
+
+
+                <figcaption>딸기맛처럼 보이지만 <b>가장 인기있는</b> 바닐라 아이스크림입니다</figcaption>
+            </figure>
+        </section>
+        <hr>
+        <section id="discount">
+            <h3>할인 일정</h3>
+            <table border="1">
+                <caption>아이스크림 할인 일정</caption>
+
+                <thead>
+                    <tr>
+                        <th>시간</th>
+                        <th>월요일</th>
+                        <th>수요일</th>
+                        <th>금요일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>오전</td>
+                        <td>바닐라</td>
+                        <td>초코</td>
+                        <td>딸기</td>
+                    </tr>
+                    <tr>
+                        <td>오후</td>
+                        <td colspan="3">신상 아이스크림 할인</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+
+        <hr>
+
+        <section id="submit">
+            <h3>메뉴 등록</h3>
+            <form action="#" method="post">
+                <fieldset id="menu-register">
+                    <legend>아이스크림 메뉴 등록</legend>
+                    <br>
+                    <label for="menu-name">메뉴 이름:</label>
+                    <input id="menu-name" name="menuName" type="text" placeholder="메뉴 이름을 입력하세요" required>
+                    <br><br>
+
+                    <label for="menu-price">가격:</label>
+                    <input id="menu-price" name="menuPrice" type="text">
+
+                    <br><br>
+
+                    <label for="menu-stock">재고 수량:</label>
+                    <input type="number" id="menu-stock" name="menuStock">
+
+                    <br><br>
+
+                    <label for="menu-category">카테고리:</label>
+
+                    <select name="category" id="menu-category">
+                        <option value="">카테고리 선택</option>
+                        <option value="cone">콘</option>
+                        <option value="cup">컵</option>
+                        <option value="bar">바(막대)</option>
+                        <option value="pint">파인트</option>
+                    </select>
+
+                    <p>판매 상태 (하나만 선택):</p>
+                    <input type="radio" id="status-sale" name="status" value="sale" checked>
+                    <label for="status-sale">판매중</label>
+
+                    <input type="radio" id="status-soldout" name="status" value="soldout">
+                    <label for="status-soldout">품절</label>
+
+                    <p>맛 태그 (여러가지 선택 가능):</p>
+                    <input type="checkbox" id="flavor-vanilla" name="flavor" value="vanilla" checked>
+                    <label for="flavor-vanilla">바닐라</label>
+                    <input type="checkbox" id="flavor-choco" name="flavor" value="choco">
+                    <label for="flavor-choco">초코</label>
+                    <input type="checkbox" id="flavor-strawberry" name="flavor" value="strawberry">
+                    <label for="flavor-strawberry">딸기</label>
+                    <br>
+                    <br>
+                    <label for="memo">메뉴 설명:</label><br>
+                    <textarea name="memo" id="memo" rows="5"></textarea>
+
+                    <br><br>
+                    <button type="submit">등록 완료</button>
+                    <button type="reset">다시 작성</button>
+                </fieldset>
+
+            </form>
+        </section>
+
+    </main>
+    <hr>
+    <hr>
+
+    <footer>
+        <h4>관련 링크</h4>
+        <p>프로젝트 코드는 깃허브에서 관리합니다.</p>
+        <p><a href="https://github.com/staytraveler/learning-log"
+                target="_blank"><i>https://github.com/staytraveler/learning-log</i></a>
+        </p>
+        <hr>
+        <p>
+            풀스택 개발자 과정 HTML 과제<br>
+            작성자 : 김용현 <br>
+            작성일 : 2026/09/03<br>
+        </p>
+        <p><i>Copyright 2026.</i></p>
+
+
+
+    </footer>
+
+
+</body>
+
+</html>
