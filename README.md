@@ -7,18 +7,16 @@
 ## 📝 과제
 
 <details>
-<summary>HTML 과제(20260903)</summary>
+<summary>JS function 연습문제(20260908)</summary>
 
-- 📄 [코드 보기](./2026-bootcamp-sesac/html_css_practice/html-practice.html)
-- 🖼️ [이미지 보기](./2026-bootcamp-sesac/screenshots/html-practice-screenshot.png)
+- 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_practice.js)
 
 **💡 배운 점**
-- 시맨틱 태그(header, main, section, footer)로 구조화하는 습관
-- `label`의 `for`와 `input`의 `id`를 연결하면 라벨 클릭만으로 입력창에 포커스가 가고, 스크린 리더도 어떤 입력창인지 정확히 인식함
-- `strong`/`em`은 `b`/`i`와 겉보기엔 같아 보여도 "의미"를 담고 있어서, 스크린 리더는 톤을 다르게 읽고 검색엔진/AI는 중요도 판단에 활용함
-- radio는 `name`을 같게 줘야 하나만 선택되는 그룹으로 묶이고, checkbox는 `name`이 같아도 여러 개 선택 가능하다는 차이를 확인함
-
+- 함수 선언할때 function 을 안쓰고 시작하는 실수..
+- 여러개의 함수가 콜백으로도 쓰이면서 중간에 정작 인자값을<br>내부 함수에 하나 빠뜨려 안적는 실수등이 있어서 오류가 생겼었다.
 </details>
+
+
 
 <details>
 <summary>CSS 과제(20260904)</summary>
@@ -36,13 +34,17 @@
 </details>
 
 <details>
-<summary>JS function 연습문제(20260908)</summary>
+<summary>HTML 과제(20260903)</summary>
 
-- 📄 [코드 보기](./2026-bootcamp-sesac/js_function_practice/js_practice.js)
+- 📄 [코드 보기](./2026-bootcamp-sesac/html_css_practice/html-practice.html)
+- 🖼️ [이미지 보기](./2026-bootcamp-sesac/screenshots/html-practice-screenshot.png)
 
 **💡 배운 점**
-- 함수 선언할때 function 을 안쓰고 시작하는 실수..
-- 여러개의 함수가 콜백으로도 쓰이면서 중간에 정작 인자값을<br>내부 함수에 하나 빠뜨려 안적는 실수등이 있어서 오류가 생겼었다.
+- 시맨틱 태그(header, main, section, footer)로 구조화하는 습관
+- `label`의 `for`와 `input`의 `id`를 연결하면 라벨 클릭만으로 입력창에 포커스가 가고, 스크린 리더도 어떤 입력창인지 정확히 인식함
+- `strong`/`em`은 `b`/`i`와 겉보기엔 같아 보여도 "의미"를 담고 있어서, 스크린 리더는 톤을 다르게 읽고 검색엔진/AI는 중요도 판단에 활용함
+- radio는 `name`을 같게 줘야 하나만 선택되는 그룹으로 묶이고, checkbox는 `name`이 같아도 여러 개 선택 가능하다는 차이를 확인함
+
 </details>
 
 ## 🔗 포트폴리오
