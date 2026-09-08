@@ -6,6 +6,14 @@
 
 ## 📝 과제
 
+
+<details>
+<summary>JS quiz(20260908)</summary>
+
+- 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_quiz.js)
+
+</details>
+
 <details>
 <summary>JS function 연습문제(20260908)</summary>
 
