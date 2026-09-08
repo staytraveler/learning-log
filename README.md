@@ -45,5 +45,5 @@
 - 여러개의 함수가 콜백으로도 쓰이면서 중간에 정작 인자값을 내부 함수에 하나 빠뜨려 안적는 실수등이 있어서 오류가 생겼었다.
 
 ## 🔗 포트폴리오
-
-- [추가예정](#) — 설명
+- [librarian-exam-tracker](https://librarian-exam-tracker.vercel.app) — 사서직 임용시험 모의고사 회차별 성적 분석 도구 (배포 주소)
+  - [GitHub 저장소](https://github.com/staytraveler/librarian-exam-tracker)
