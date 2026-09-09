@@ -10,6 +10,7 @@
 <details>
 <summary>js_practice</summary>
 
+- JS quiz2(260909) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_quiz2.js)
 - JS prototype_practice(260909) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_prototype_practice.js)
 - JS object_practice(260909) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_object_practice.js)
 - JS quiz(20260908) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_quiz.js)
