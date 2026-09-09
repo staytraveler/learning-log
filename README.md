@@ -8,20 +8,13 @@
 
 
 <details>
-<summary>JS quiz(20260908)</summary>
+<summary>js_practice</summary>
 
-- 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_quiz.js)
+- JS prototype_practice(260909) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_prototype_practice.js)
+- JS object_practice(260909) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_object_practice.js)
+- JS quiz(20260908) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_quiz.js)
+- JS function 연습문제(20260908) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_practice.js)
 
-</details>
-
-<details>
-<summary>JS function 연습문제(20260908)</summary>
-
-- 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_practice.js)
-
-**💡 배운 점**
-- 함수 선언할때 function 을 안쓰고 시작하는 실수..
-- 여러개의 함수가 콜백으로도 쓰이면서 중간에 정작 인자값을<br>내부 함수에 하나 빠뜨려 안적는 실수등이 있어서 오류가 생겼었다.
 </details>
 
 
