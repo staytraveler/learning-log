@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>연습문제 - 이벤트/어트리뷰트</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        section {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            margin-top: 0;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: crimson;
+        }
+
+        .area {
+            background: #f4f4f4;
+            min-height: 60px;
+            margin-top: 10px;
+            padding: 10px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>오늘 수업 연습문제 (10문제)</h1>
+
+    <!-- =========================================================
+    문제 1. 이벤트 핸들러 등록 방식
+    아래 버튼에 addEventListener로 클릭 핸들러를 "두 개" 등록해서
+    콘솔에 순서대로 '첫 번째 핸들러 실행', '두 번째 핸들러 실행'이
+    출력되도록 만드세요.
+    ========================================================== -->
+    <section>
+        <h3>문제 1. addEventListener로 핸들러 여러 개 등록하기</h3>
+        <button id="q1-btn">문제1 버튼</button>
+        <script>
+            const $q1Btn = document.getElementById('q1-btn');
+
+            // TODO: 여기에 작성하세요
+
+        </script>
+    </section>
+
+    <!-- =========================================================
+    문제 2. 이벤트 핸들러 제거
+    '토글 버튼'을 누르면 이미지가 아래 mission 핸들러가 등록되어
+    있는지 여부에 따라 등록 <-> 제거가 반복되도록 만드세요.
+    (등록되어 있으면 제거, 없으면 등록. 상태를 boolean 변수로 관리)
+    ========================================================== -->
+    <section>
+        <h3>문제 2. removeEventListener로 토글 구현하기</h3>
+        <button id="q2-target">대상 버튼 (클릭하면 alert)</button>
+        <button id="q2-toggle">등록/제거 토글</button>
+        <script>
+            const $q2Target = document.getElementById('q2-target');
+            const $q2Toggle = document.getElementById('q2-toggle');
+
+            const mission = () => alert('임무 수행!');
+            // let isRegistered = false;
+
+            // TODO: 여기에 작성하세요
+
+        </script>
+    </section>
+
+    <!-- =========================================================
+    문제 3. 이벤트 객체 다루기
+    아래 영역을 클릭하면 클릭 좌표(e.clientX, e.clientY)와
+    실제로 클릭된 요소의 태그 이름(e.target.tagName)을
+    q3-area 안에 표시하세요.
+    ========================================================== -->
+    <section>
+        <h3>문제 3. 이벤트 객체로 좌표와 클릭 대상 출력하기</h3>
+        <div id="q3-box" style="border:1px solid #999; padding:10px;">
+            <p>이 박스 안 아무 곳이나 클릭해보세요 (이 <b>p</b> 태그도 포함)</p>
+        </div>
+        <div id="q3-area" class="area"></div>
+        <script>
+            const $q3Box = document.getElementById('q3-box');
+            const $q3Area = document.getElementById('q3-area');
+
+            // TODO: 여기에 작성하세요
+
+        </script>
+    </section>
+
+    <!-- =========================================================
+    문제 4. this vs e.currentTarget
+    아래 버튼에 "일반 function"으로 클릭 핸들러를 등록하고,
+    this와 e.currentTarget이 같은 요소를 가리키는지 콘솔로
+    확인한 뒤, this.style.backgroundColor를 'lightgreen'으로
+    바꾸세요. 그 다음 "화살표 함수" 버전도 만들어서
+    this가 왜 요소를 가리키지 않는지 콘솔로 비교해보세요.
+    ========================================================== -->
+    <section>
+        <h3>문제 4. this와 e.currentTarget 비교하기</h3>
+        <button id="q4-btn">일반 function으로 등록</button>
+        <script>
+            const $q4Btn = document.getElementById('q4-btn');
+
+            // TODO: 일반 function으로 등록, this / e.currentTarget 비교 후 배경색 변경
+
+            // TODO: 화살표 함수로도 등록해서 this가 다르게 나오는 것 확인 (mouseover 등 다른 이벤트 사용)
+
+        </script>
+    </section>
+
+    <!-- =========================================================
+    문제 5. 이벤트 위임
+    q5-list(ul)에 이벤트 핸들러를 "딱 하나만" 등록해서,
+    li를 클릭하면 해당 li에 'highlight' 클래스가 토글되도록
+    만드세요. closest()를 사용하고, li가 아닌 부분(ul의 여백)을
+    클릭했을 때는 아무 일도 일어나지 않아야 합니다.
+    ========================================================== -->
+    <section>
+        <h3>문제 5. 이벤트 위임으로 리스트 항목 하이라이트</h3>
+        <ul id="q5-list">
+            <li>사과</li>
+            <li>바나나</li>
+            <li>포도</li>
+        </ul>
+        <script>
+            const $q5List = document.getElementById('q5-list');
+
+            // TODO: 여기에 작성하세요 (closest 사용)
+
+        </script>
+    </section>
+
+    <!-- =========================================================
+    문제 6. 동적으로 추가된 요소에도 위임 적용하기
+    '추가' 버튼을 누르면 q5-list에 새로운 li('수박')가 추가되도록
+    만드세요. 문제 5의 위임 코드를 고치지 않고도, 새로 추가된
+    '수박'을 클릭했을 때 하이라이트가 정상 동작해야 합니다.
+    ========================================================== -->
+    <section>
+        <h3>문제 6. 동적으로 추가된 요소도 위임이 적용되는지 확인하기</h3>
+        <button id="q6-add">항목 추가 (수박)</button>
+        <p>※ 문제 5의 &lt;ul id="q5-list"&gt;를 그대로 사용합니다.</p>
+        <script>
+            const $q6Add = document.getElementById('q6-add');
+
+            // TODO: 여기에 작성하세요 (createElement, appendChild)
+
+        </script>
+    </section>
+
+    <!-- =========================================================
+    문제 7. preventDefault로 폼 유효성 검사
+    아래 폼을 제출(submit)했을 때 새로고침이 되지 않도록 막고,
+    이메일 입력값에 '@'가 포함되어 있지 않으면
+    q7-error에 '올바른 이메일을 입력해주세요'를 표시하세요.
+    통과하면 q7-error를 비우고 alert('제출 완료')를 띄우세요.
+    ========================================================== -->
+    <section>
+        <h3>문제 7. preventDefault와 폼 유효성 검사</h3>
+        <form id="q7-form">
+            <input type="text" name="email" placeholder="이메일 입력">
+            <button type="submit">제출</button>
+            <p id="q7-error" style="color:red;"></p>
+        </form>
+        <script>
+            const $q7Form = document.getElementById('q7-form');
+            const $q7Error = document.getElementById('q7-error');
+
+            // TODO: 여기에 작성하세요
+
+        </script>
+    </section>
+
+    <!-- =========================================================
+    문제 8. stopPropagation으로 모달 구현
+    회색 배경(q8-bg)을 클릭하면 모달이 닫히고(display:none),
+    흰색 내용(q8-content)을 클릭했을 때는 이벤트 전파를 막아서
+    모달이 닫히지 않도록 만드세요.
+    ========================================================== -->
+    <section>
+        <h3>문제 8. stopPropagation으로 모달 바깥 클릭만 닫기</h3>
+        <div id="q8-bg" style="background:rgba(0,0,0,0.4); padding:30px;">
+            <div id="q8-content" style="background:white; padding:20px; width:200px;">
+                내용 영역 (클릭해도 안 닫힘)
+            </div>
+        </div>
+        <script>
+            const $q8Bg = document.getElementById('q8-bg');
+            const $q8Content = document.getElementById('q8-content');
+
+            // TODO: 여기에 작성하세요
+
+        </script>
+    </section>
+
+    <!-- =========================================================
+    문제 9. 키보드 이벤트로 글자 수 제한 + Enter 감지
+    아래 input에 input 이벤트로 실시간 글자 수를 q9-counter에
+    표시하고, 10자를 초과하면 q9-counter를 빨간색으로 바꾸세요.
+    또한 keydown 이벤트로 Enter 키를 누르면
+    콘솔에 '입력값: 현재값' 형태로 출력하세요.
+    ========================================================== -->
+    <section>
+        <h3>문제 9. input/keydown으로 글자 수 표시와 Enter 감지</h3>
+        <input type="text" id="q9-input" placeholder="10자 이내로 입력">
+        <span id="q9-counter">0</span>자
+        <script>
+            const $q9Input = document.getElementById('q9-input');
+            const $q9Counter = document.getElementById('q9-counter');
+
+            // TODO: 여기에 작성하세요 (input 이벤트, keydown 이벤트)
+
+        </script>
+    </section>
+
+    <!-- =========================================================
+    문제 10. data 어트리뷰트와 dataset + 이벤트 위임
+    아래 상품 목록(li)에는 data-product-id, data-price가
+    설정되어 있습니다. ul에 이벤트 위임으로 핸들러를 등록해서,
+    클릭한 상품의 id와 가격(천 단위 콤마, toLocaleString 사용)을
+    q10-info에 출력하세요.
+    ========================================================== -->
+    <section>
+        <h3>문제 10. dataset과 이벤트 위임으로 상품 정보 출력</h3>
+        <ul id="q10-list" style="list-style:none; padding:0; display:flex; gap:10px;">
+            <li class="product" data-product-id="p-01" data-price="12000"
+                style="border:1px solid #ccc; padding:10px; cursor:pointer;">상품 A</li>
+            <li class="product" data-product-id="p-02" data-price="9500"
+                style="border:1px solid #ccc; padding:10px; cursor:pointer;">상품 B</li>
+            <li class="product" data-product-id="p-03" data-price="30000"
+                style="border:1px solid #ccc; padding:10px; cursor:pointer;">상품 C</li>
+        </ul>
+        <div id="q10-info" class="area"></div>
+        <script>
+            const $q10List = document.getElementById('q10-list');
+            const $q10Info = document.getElementById('q10-info');
+
+            // TODO: 여기에 작성하세요 (closest, dataset, toLocaleString)
+
+        </script>
+    </section>
+
+</body>
+
+</html>

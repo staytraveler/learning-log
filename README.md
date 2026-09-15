@@ -8,13 +8,26 @@
 
 
 <details>
-<summary>js_practice</summary>
+<summary>js_dom practice 2</summary>
+
+- dom_practice0915(260915) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice2/dom_practice0915.html)
+- dom_selfQuiz(260914) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice2/dom_selfQuiz.html)
+- dom_practice(260914) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice2/dom_practice.html)
+
+</details>
+
+<details>
+<summary>js_practice 1</summary>
 
 - JS quiz2(260909) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_quiz2.js)
 - JS prototype_practice(260909) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_prototype_practice.js)
 - JS object_practice(260909) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_object_practice.js)
 - JS quiz(20260908) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_quiz.js)
 - JS function 연습문제(20260908) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_practice.js)
+- JS self_quiz [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_self_quiz.md)
+- JS spreadSyntax [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_spreadSyntax.js)
+- JS es6 [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_es6.js)
+- JS array_practice [코드 보기](./2026-bootcamp-sesac/javascript_practice/js_array_practice.js)
 
 </details>
 

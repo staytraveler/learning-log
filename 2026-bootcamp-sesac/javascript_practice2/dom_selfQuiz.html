@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 반복 연습 10제</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+            color: #222;
+            font-family: Arial, "Noto Sans KR", sans-serif;
+            line-height: 1.6;
+            background: #f5f7fb;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        button,
+        input,
+        textarea {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        button {
+            border: 0;
+            border-radius: 6px;
+            color: white;
+            background: #315efb;
+            cursor: pointer;
+        }
+
+        .problem {
+            margin-top: 24px;
+            padding: 20px;
+            border: 1px solid #dfe4ea;
+            border-radius: 12px;
+            background: white;
+        }
+
+        .requirements {
+            padding: 10px 16px 10px 32px;
+            border-radius: 8px;
+            background: #f1f4ff;
+            font-size: 14px;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .result {
+            min-height: 36px;
+            margin-top: 10px;
+            padding: 8px 12px;
+            border: 1px dashed #a4b0be;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+
+        /* 문제1 */
+        .hidden-text.hide {
+            display: none;
+        }
+
+        /* 문제3 */
+        .fav-item.favorited {
+            color: #ffa502;
+            font-weight: bold;
+        }
+
+        /* 문제4 */
+        #simple-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* 문제5 탭 */
+        .tab-buttons button {
+            background: #b2bec3;
+        }
+
+        .tab-buttons button.active {
+            background: #315efb;
+        }
+
+        .tab-panel {
+            display: none;
+            padding: 10px;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        /* 문제6 별점 */
+        .star {
+            font-size: 24px;
+            cursor: pointer;
+            color: #ccc;
+        }
+
+        .star.on {
+            color: #ffa502;
+        }
+
+        /* 문제7 갤러리 */
+        #main-image {
+            width: 200px;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .thumb {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+
+        .thumb.selected {
+            border-color: #315efb;
+        }
+
+        /* 문제10 폼 */
+        .form-input.error {
+            border: 2px solid #d63031;
+        }
+
+        .error-message {
+            color: #d63031;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>DOM 반복 연습 10제</h1>
+    <p>각 문제의 script 태그 안에 코드를 채우세요. HTML/CSS는 그대로 두시면 됩니다.</p>
+
+    <section class="problem">
+        <h2>문제 1. 더보기 / 접기</h2>
+        <ul class="requirements">
+            <li>버튼을 누르면 <code>.hidden-text</code>의 <code>hide</code> 클래스를 토글합니다.</li>
+            <li>현재 숨김 상태면 버튼 텍스트를 "더보기", 보이는 상태면 "접기"로 바꿉니다.</li>
+        </ul>
+        <p>이건 항상 보이는 텍스트입니다.
+            <span class="hidden-text hide">여기는 숨겨진 추가 설명 텍스트입니다.</span>
+        </p>
+        <button id="toggle-btn">더보기</button>
+
+        <script>
+            // 코드 작성
+            const $toggleBtn = document.getElementById('toggle-btn');
+            const $hiddenText = document.querySelector('.hidden-text');
+
+            $toggleBtn.addEventListener('click', () => {
+                $hiddenText.classList.toggle('hide');
+                if ($hiddenText.classList.contains('hide')) {
+                    $toggleBtn.textContent = '더보기';
+                } else {
+                    $toggleBtn.textContent = '접기';
+
+                }
+            });
+        </script>
+    </section>
+
+    <section class="problem">
+        <h2>문제 2. 카운터</h2>
+        <ul class="requirements">
+            <li>+1 / -1 버튼을 누르면 숫자를 증가/감소시킵니다.</li>
+            <li>리셋 버튼을 누르면 0으로 되돌립니다.</li>
+            <li>숫자는 <code>#count</code>의 텍스트로 표시합니다.</li>
+        </ul>
+        <p>현재 값: <span id="count">0</span></p>
+        <div class="controls">
+            <button id="plus-btn">+1</button>
+            <button id="minus-btn">-1</button>
+            <button id="reset-btn">리셋</button>
+        </div>
+
+        <script>
+            const $plusBtn = document.getElementById('plus-btn');
+            const $minusBtn = document.getElementById('minus-btn');
+            const $resetBtn = document.getElementById('reset-btn');
+            const $count = document.getElementById('count');
+
+            let count = 0;
+
+            $plusBtn.addEventListener('click', () => {
+                count++;
+                $count.textContent = count;
+            });
+            $minusBtn.addEventListener('click', () => {
+                count--;
+                $count.textContent = count;
+            });
+            $resetBtn.addEventListener('click', () => {
+                count = 0;
+                $count.textContent = count;
+            });
+        </script>
+    </section>
+
+    <section class="problem">
+        <h2>문제 3. 개별 즐겨찾기 토글</h2>
+        <ul class="requirements">
+            <li>각 항목의 ★ 버튼을 누르면 <b>그 항목만</b> <code>favorited</code> 클래스를 토글합니다.</li>
+            <li>다른 항목에는 영향을 주지 않습니다. (문제4 상품카드와 다른 패턴!)</li>
+        </ul>
+        <ul id="fav-list">
+            <li class="fav-item">사과 <button class="fav-btn">★</button></li>
+            <li class="fav-item">바나나 <button class="fav-btn">★</button></li>
+            <li class="fav-item">체리 <button class="fav-btn">★</button></li>
+        </ul>
+
+        <script>
+            // 코드 작성
+            // 힌트: querySelectorAll('.fav-btn')로 버튼들을 모두 가져온 뒤 for...of로 각각 이벤트를 걸고,
+            // 이벤트 안에서는 event.target(눌린 버튼) 기준으로 closest('.fav-item')을 찾으세요.
+            const $favBtns = document.querySelectorAll('.fav-btn');
+            for (const btn of $favBtns) {
+                btn.addEventListener('click', (event) => {
+                    const $item = event.target.closest('.fav-item');
+                    $item.classList.toggle('favorited');
+
+                })
+            }
+        </script>
+    </section>
+
+    <section class="problem">
+        <h2>문제 4. 항목 개별 삭제 (closest 활용)</h2>
+        <ul class="requirements">
+            <li>각 항목의 삭제 버튼을 누르면 <b>그 항목(li)만</b> 목록에서 제거합니다.</li>
+            <li><code>closest()</code>를 사용해 버튼의 부모 li를 찾으세요.</li>
+        </ul>
+        <ul id="simple-list">
+            <li>세탁물 찾기 <button class="del-btn">삭제</button></li>
+            <li>장보기 <button class="del-btn">삭제</button></li>
+            <li>운동하기 <button class="del-btn">삭제</button></li>
+        </ul>
+
+        <script>
+            // 코드 작성
+            const $delBtns = document.querySelectorAll('.del-btn');
+            for (const btn of $delBtns) {
+                btn.addEventListener('click', (event) => {
+                    event.target.closest('li').remove();
+
+                })
+            };
+        </script>
+    </section>
+
+    <section class="problem">
+        <h2>문제 5. 탭 전환</h2>
+        <ul class="requirements">
+            <li>탭 버튼을 누르면 해당 버튼과 <code>data-tab</code> 값이 같은 패널만 보여줍니다.</li>
+            <li>모든 버튼/패널의 <code>active</code> 클래스를 먼저 제거한 뒤, 클릭한 것만 추가하세요. (문제4 패턴과 동일)</li>
+        </ul>
+        <div class="tab-buttons controls">
+            <button data-tab="intro" class="active">소개</button>
+            <button data-tab="skill">기술</button>
+            <button data-tab="contact">연락처</button>
+        </div>
+        <div id="intro" class="tab-panel active">저는 개발자를 준비하고 있습니다.</div>
+        <div id="skill" class="tab-panel">Java, Spring, React, TypeScript</div>
+        <div id="contact" class="tab-panel">example@email.com</div>
+
+        <script>
+            // 코드 작성
+            // 힌트: 버튼의 data-tab 값 === 패널의 id 값이 되도록 매칭하세요.
+            const $tabButtons = document.querySelectorAll('.tab-buttons button');
+            const $tabPanel = document.querySelectorAll('.tab-panel');
+            for (const btn of $tabButtons) {
+                btn.addEventListener('click', () => {
+
+                    for (const b of $tabButtons) {
+                        b.classList.remove('active');
+                    }
+                    btn.classList.add('active');
+
+                    for (const panel of $tabPanel) {
+                        panel.classList.remove('active');
+                    }
+                    const targetId = btn.dataset.tab;
+                    document.getElementById(targetId).classList.add('active');
+                })
+            };
+        </script>
+    </section>
+
+    <section class="problem">
+        <h2>문제 6. 별점 선택</h2>
+        <ul class="requirements">
+            <li>별을 클릭하면 <code>data-value</code> 값 <b>이하</b>인 모든 별에 <code>on</code> 클래스를 추가합니다.</li>
+            <li>그보다 큰 별들은 <code>on</code> 클래스를 제거합니다.</li>
+            <li>선택된 점수를 <code>#star-result</code>에 "선택한 점수: N점"으로 출력합니다.</li>
+        </ul>
+        <div id="star-box">
+            <span class="star" data-value="1">★</span><span class="star" data-value="2">★</span><span class="star"
+                data-value="3">★</span><span class="star" data-value="4">★</span><span class="star"
+                data-value="5">★</span>
+        </div>
+        <p id="star-result" class="result">별을 선택해주세요.</p>
+
+        <script>
+            // 코드 작성
+            // 힌트: Number(star.dataset.value) <= 클릭한 별의 값 으로 비교하세요.
+        </script>
+    </section>
+
+    <section class="problem">
+        <h2>문제 7. 썸네일 갤러리</h2>
+        <ul class="requirements">
+            <li>썸네일을 클릭하면 <code>#main-image</code>의 <code>src</code>를 그 썸네일의 <code>src</code>로 바꿉니다.</li>
+            <li>클릭한 썸네일에만 <code>selected</code> 클래스를 추가하고 나머지는 제거합니다.</li>
+        </ul>
+        <img id="main-image" src="https://placehold.co/200x140?text=1" alt="메인 이미지">
+        <div class="controls">
+            <img class="thumb selected" src="https://placehold.co/200x140?text=1" alt="썸네일1">
+            <img class="thumb" src="https://placehold.co/200x140?text=2" alt="썸네일2">
+            <img class="thumb" src="https://placehold.co/200x140?text=3" alt="썸네일3">
+        </div>
+
+        <script>
+            // 코드 작성
+        </script>
+    </section>
+
+    <section class="problem">
+        <h2>문제 8. 글자수 실시간 표시</h2>
+        <ul class="requirements">
+            <li>textarea에 입력할 때마다(<code>input</code> 이벤트) 현재 글자수를 <code>#char-count</code>에 표시합니다. ("N자")</li>
+            <li>20자를 초과하면 <code>#char-count</code>에 <code>warning</code> 클래스를 추가하고, 이하이면 제거합니다.</li>
+        </ul>
+        <textarea id="msg-input" rows="2" placeholder="메시지를 입력하세요"></textarea>
+        <p>글자수: <span id="char-count">0자</span></p>
+
+        <script>
+            // 코드 작성
+        </script>
+    </section>
+
+    <section class="problem">
+        <h2>문제 9. 배경색 랜덤 변경 &amp; 초기화</h2>
+        <ul class="requirements">
+            <li>"랜덤 배경" 버튼을 누르면 <code>#color-box</code>의 배경색을 무작위 색으로 바꿉니다. (<code>Math.random()</code> 활용)</li>
+            <li>"초기화" 버튼을 누르면 처음 배경색(연한 회색 <code>#eee</code>)으로 되돌립니다.</li>
+        </ul>
+        <div id="color-box" style="width:120px;height:80px;background:#eee;border-radius:8px;"></div>
+        <div class="controls">
+            <button id="random-btn">랜덤 배경</button>
+            <button id="reset-color-btn">초기화</button>
+        </div>
+
+        <script>
+            // 코드 작성
+            // 힌트: 색상 문자열은 이렇게 만들 수 있어요.
+            // const randomColor = `rgb(${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)})`;
+        </script>
+    </section>
+
+    <section class="problem">
+        <h2>문제 10. 간단한 폼 유효성 검사</h2>
+        <ul class="requirements">
+            <li>제출 버튼을 누르면 이름/이메일 값이 비어있는지 확인합니다.</li>
+            <li>비어있으면 해당 input에 <code>error</code> 클래스를 추가하고, <code>#form-result</code>에 "이름과 이메일을 모두 입력해주세요."를 출력합니다.
+            </li>
+            <li>둘 다 채워져 있으면 두 input의 <code>error</code> 클래스를 제거하고, <code>#form-result</code>에 "제출 완료: 이름(이메일)" 형태로
+                출력합니다.</li>
+        </ul>
+        <div class="controls">
+            <input type="text" id="name-input" class="form-input" placeholder="이름">
+            <input type="text" id="email-input" class="form-input" placeholder="이메일">
+            <button id="submit-btn">제출</button>
+        </div>
+        <p id="form-result" class="result">결과가 여기에 표시됩니다.</p>
+
+        <script>
+            // 코드 작성
+        </script>
+    </section>
+
+</body>
+
+</html>
