@@ -306,17 +306,26 @@
             const $typipngResult = document.getElementById('typing-result');
 
             let countChar = 0;
+
             $messageInput.addEventListener('input', (e) => {
                 countChar = e.target.value.length;
                 $charCount.textContent = `현재 글자 수: ${countChar}`;
-
-
             });
 
             $messageInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
+                    const message = e.target.value.trim();
 
-                    $typipngResult.textContent = e.target.value.trim();
+                    if (message === '') {
+                        $typipngResult.textContent = '메세지를 입력하세요';
+                        return;
+                    }
+
+                    $typipngResult.textContent = message;
+
+                    $messageInput.value = '';
+                    countChar = 0;
+                    $charCount.textContent = `현재 글자 수: ${countChar}`;
 
                 }
             })
@@ -341,6 +350,36 @@
         <p id="signup-result" class="result">검증 결과가 여기에 표시됩니다.</p>
         <script>
             // 코드 작성
+            const $form = document.getElementById('signup-form');
+            const $userName = document.getElementById('user-name');
+            const $userPassword = document.getElementById('user-password');
+            const $terms = document.getElementById('terms');
+            const $signupResult = document.getElementById('signup-result');
+
+            $form.addEventListener('submit', (e) => {
+                e.preventDefault(); //페이지 이동 막기
+
+                const name = $userName.value.trim().length;
+                const password = $userPassword.value.length;
+
+                if (name < 2) {
+                    $signupResult.textContent = '이름은 두 글자 이상이어야 합니다.';
+                    return;
+                }
+
+                if (password < 6) {
+                    $signupResult.textContent = '패스워드는 6글자 이상이어야 합니다.';
+                    return;
+                }
+
+                if (!$terms.checked) {
+                    $signupResult.textContent = '약관에 동의 해주세요'
+                    return;
+                }
+
+                $signupResult.textContent = '성공적으로 제출되었습니다.';
+
+            })
         </script>
     </section>
 </body>

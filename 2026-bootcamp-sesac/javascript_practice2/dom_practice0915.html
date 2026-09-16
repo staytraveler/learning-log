@@ -53,6 +53,12 @@
             const $q1Btn = document.getElementById('q1-btn');
 
             // TODO: 여기에 작성하세요
+            $q1Btn.addEventListener('click', () => {
+                console.log('첫번째 핸들러 실행');
+            })
+            $q1Btn.addEventListener('click', () => {
+                console.log('두번째 핸들러 실행');
+            })
 
         </script>
     </section>
@@ -72,10 +78,20 @@
             const $q2Toggle = document.getElementById('q2-toggle');
 
             const mission = () => alert('임무 수행!');
-            // let isRegistered = false;
+            let isRegistered = false;
 
             // TODO: 여기에 작성하세요
-
+            $q2Toggle.addEventListener('click', () => {
+                if (isRegistered) {
+                    $q2Target.removeEventListener('click', mission);
+                    isRegistered = false;
+                    $q2Toggle.textContent = '등록하기 (현재: 미등록)';
+                } else {
+                    $q2Target.addEventListener('click', mission);
+                    isRegistered = true;
+                    $q2Toggle.textContent = '제거하기 (현재: 등록)';
+                }
+            });
         </script>
     </section>
 
@@ -96,6 +112,10 @@
             const $q3Area = document.getElementById('q3-area');
 
             // TODO: 여기에 작성하세요
+            $q3Box.addEventListener('click', (e) => {
+                const name = e.target.tagName;
+                $q3Area.textContent = `${name} , x: ${e.clientX}, y: ${e.clientY}`;
+            });
 
         </script>
     </section>
@@ -115,9 +135,19 @@
             const $q4Btn = document.getElementById('q4-btn');
 
             // TODO: 일반 function으로 등록, this / e.currentTarget 비교 후 배경색 변경
+            $q4Btn.addEventListener('click', function (e) {
+                console.log('this', this);
+                console.log('e.currentTarget:', e.currentTarget);
+                console.log('둘 비교', this === e.currentTarget);
 
+                this.style.backgroundColor = 'lightgreen';
+            })
             // TODO: 화살표 함수로도 등록해서 this가 다르게 나오는 것 확인 (mouseover 등 다른 이벤트 사용)
-
+            $q4Btn.addEventListener('mouseover', (e) => {
+                console.log('화살표함수 this', this);
+                console.log('e.currentTarget:', e.currentTarget);
+                console.log('둘 비교', this === e.currentTarget);
+            })
         </script>
     </section>
 
@@ -139,6 +169,12 @@
             const $q5List = document.getElementById('q5-list');
 
             // TODO: 여기에 작성하세요 (closest 사용)
+            $q5List.addEventListener('click', (e) => {
+                const $li = e.target.closest('li');
+                if (!$li) return;
+
+                $li.classList.toggle('highlight');
+            });
 
         </script>
     </section>
@@ -157,7 +193,11 @@
             const $q6Add = document.getElementById('q6-add');
 
             // TODO: 여기에 작성하세요 (createElement, appendChild)
-
+            $q6Add.addEventListener('click', () => {
+                const $li = document.createElement('li');
+                $li.textContent = '수박';
+                $q5List.appendChild($li);
+            })
         </script>
     </section>
 
@@ -180,7 +220,19 @@
             const $q7Error = document.getElementById('q7-error');
 
             // TODO: 여기에 작성하세요
+            $q7Form.addEventListener('submit', (e) => {
+                e.preventDefault();
 
+                const email = $q7Form.email.value; //form태그라서 .name이름으로 email항목찾기
+
+                if (!email.includes('@')) {
+                    $q7Error.textContent = '올바른 이메일을 입력해주세요';
+                    return;
+                } else {
+                    $q7Error.textContent = '';
+                    alert('제출완료');
+                }
+            })
         </script>
     </section>
 
@@ -202,7 +254,13 @@
             const $q8Content = document.getElementById('q8-content');
 
             // TODO: 여기에 작성하세요
-
+            $q8Content.addEventListener('click', e => {
+                e.stopPropagation();
+            }
+            )
+            $q8Bg.addEventListener('click', () => {
+                $q8Content.style.display = 'none';
+            })
         </script>
     </section>
 
@@ -222,7 +280,24 @@
             const $q9Counter = document.getElementById('q9-counter');
 
             // TODO: 여기에 작성하세요 (input 이벤트, keydown 이벤트)
+            $q9Input.addEventListener('input', (e) => {
+                const count = Number(e.target.value.length);
 
+                if (count > 10) {
+                    $q9Counter.style.color = 'red';
+                } else {
+                    $q9Counter.style.color = '';
+                }
+                $q9Counter.textContent = `${count}`;
+
+            })
+
+            $q9Input.addEventListener('keydown', e => {
+                if (e.key === 'Enter') {
+
+                    console.log('입력한 내용:', e.target.value);
+                }
+            })
         </script>
     </section>
 
@@ -249,6 +324,16 @@
             const $q10Info = document.getElementById('q10-info');
 
             // TODO: 여기에 작성하세요 (closest, dataset, toLocaleString)
+            $q10List.addEventListener('click', e => {
+                const $product = e.target.closest('.product');
+                if (!$product) return;
+
+                const { productId, price } = $product.dataset;
+                const formattedPrice = Number(price).toLocaleString();
+
+                $q10Info.textContent = `id : ${productId} , price : ${formattedPrice}원`;
+
+            })
 
         </script>
     </section>

@@ -6,14 +6,19 @@
 
 ## 📝 과제
 
+<details>
+<summary>react</summary>
 
+- component_props(260916) 📄 [코드 보기](./2026-bootcamp-sesac/react/component_props.html)
+
+</details>
 <details>
 <summary>js_dom practice 2</summary>
 
 - dom_practice0915(260915) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice2/dom_practice0915.html)
 - dom_selfQuiz(260914) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice2/dom_selfQuiz.html)
 - dom_practice(260914) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice2/dom_practice.html)
-
+- event(260916) 📄 [코드 보기](./2026-bootcamp-sesac/javascript_practice2/event.html)
 </details>
 
 <details>

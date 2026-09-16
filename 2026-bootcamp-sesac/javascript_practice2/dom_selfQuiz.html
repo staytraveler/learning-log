@@ -331,6 +331,26 @@
         <script>
             // 코드 작성
             // 힌트: Number(star.dataset.value) <= 클릭한 별의 값 으로 비교하세요.
+            const $starBox = document.getElementById('star-box');
+            const stars = document.querySelectorAll('.star');
+            const $starResult = document.getElementById('star-result');
+
+            $starBox.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('star')) return;
+
+                const clickedValue = Number(e.target.dataset.value);
+
+                for (const star of stars) {
+                    const starValue = Number(star.dataset.value);
+                    if (starValue <= clickedValue) {
+                        star.classList.add('on');
+                    } else {
+                        star.classList.remove('on');
+                    }
+                }
+                $starResult.textContent = `선택한 점수: ${clickedValue}점`;
+            });
+
         </script>
     </section>
 
@@ -349,6 +369,20 @@
 
         <script>
             // 코드 작성
+            const thumbs = document.querySelectorAll('.thumb');
+            const $mainImage = document.getElementById('main-image');
+            const $controls = $mainImage.nextElementSibling; // 5번 문제때매 형제로 찾기.
+
+            $controls.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('thumb')) return;
+
+                $mainImage.src = e.target.src;
+
+                for (const thumb of thumbs) {
+                    thumb.classList.remove('selected');
+                } e.target.classList.add('selected');
+            });
+
         </script>
     </section>
 
@@ -363,6 +397,20 @@
 
         <script>
             // 코드 작성
+            const $msgInput = document.getElementById('msg-input');
+            const $charCount = document.getElementById('char-count');
+
+            $msgInput.addEventListener('input', (e) => {
+                const count = e.target.value.length;
+
+                $charCount.textContent = `${count}자`;
+                if (count > 20) {
+                    $charCount.classList.add('warning');
+                } else {
+                    $charCount.classList.remove('warning');
+                }
+            })
+
         </script>
     </section>
 
@@ -382,6 +430,18 @@
             // 코드 작성
             // 힌트: 색상 문자열은 이렇게 만들 수 있어요.
             // const randomColor = `rgb(${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)})`;
+            const $colorBox = document.getElementById('color-box');
+            const $randomBtn = document.getElementById('random-btn');
+            const $resetColor = document.getElementById('reset-color-btn');
+
+            const random = () => {
+                const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+                $colorBox.style.background = randomColor;
+            };
+            $randomBtn.addEventListener('click', random);
+            $resetColor.addEventListener('click', () => {
+                $colorBox.style.background = '#eee';
+            })
         </script>
     </section>
 
@@ -403,6 +463,29 @@
 
         <script>
             // 코드 작성
+            const $nameInput = document.getElementById('name-input');
+            const $emailInput = document.getElementById('email-input');
+            const $submitBtn = document.getElementById('submit-btn');
+            const $formResult = document.getElementById('form-result');
+
+
+            $submitBtn.addEventListener('click', () => {
+                const name = $nameInput.value.trim();
+                const email = $emailInput.value.trim();
+
+
+                if (name === '' || email === '') {
+                    $nameInput.classList.add('error');
+                    $emailInput.classList.add('error');
+                    $formResult.textContent = "이름과 이메일을 모두 입력해주세요";
+                    return;
+                }
+
+                $nameInput.classList.remove('error');
+                $emailInput.classList.remove('error');
+                $formResult.textContent = `제출완료: ${name}(${email})`;
+
+            });
         </script>
     </section>
 
