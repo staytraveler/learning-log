@@ -110,13 +110,25 @@
         const { useState } = React;
 
         // 할 일 한 개를 화면에 표시하는 자식 컴포넌트
-        function TodoItem({ todo, onRemove }) {
+        function TodoItem({ todo, onRemove, onToggle }) {
 
             return (
                 <li className="todo-item">
-                    <span>{todo.text} {/* TODO 1. todo의 할 일 내용을 출력하세요. */}</span>
-                    <button onClick={() => onRemove(todo.id)}
-                    >
+
+                    <input
+                        type="checkbox"
+                        checked={todo.isDone}
+                        onChange={() => onToggle(todo.id)}
+                    />
+
+
+                    <span style={todo.isDone
+                        ? { textDecoration: 'line-through' }
+                        : undefined}>
+                        {todo.text}
+                    </span>
+
+                    <button onClick={() => onRemove(todo.id)}>
                         삭제
                     </button>
                 </li >
@@ -132,8 +144,8 @@
             // { id: 1, text: 'React 복습하기' }
             // { id: 2, text: 'Todo List 완성하기' }
             const [todos, setTodos] = useState([
-                { id: 1, text: 'React 복습하기' },
-                { id: 2, text: 'Todo List 완성하기' }
+                { id: 1, text: 'React 복습하기', isDone: true },
+                { id: 2, text: 'Todo List 완성하기', isDone: true }
             ]);
             // TODO 5. 다음 할 일의 id로 사용할 nextId state를 만드세요. 초기값은 3입니다.
             const [nextId, setNextID] = useState(3);
@@ -161,6 +173,16 @@
                 setTodos(todos.filter(todo => todo.id !== id));
 
             };
+
+            const handleToggle = (id) => {
+                setTodos(
+                    todos.map(todo => todo.id === id
+                        ? { ...todo, isDone: !todo.isDone }
+                        : todo
+                    )
+                )
+            }
+
 
             return (
                 <>
@@ -200,7 +222,8 @@
                                 <TodoItem
                                     key={todo.id}
                                     todo={todo}
-                                    onRemove={handleRemove} />
+                                    onRemove={handleRemove}
+                                    onToggle={handleToggle} />
                             ))}
 
                             {/* key, todo, onRemove props를 각각 전달합니다. */}
