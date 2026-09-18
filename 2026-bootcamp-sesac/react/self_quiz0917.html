@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React State &amp; Event 연습문제 10선</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+            color: #222;
+            font-family: Arial, "Noto Sans KR", sans-serif;
+            background: #f4f6fa;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 21px;
+        }
+
+        button,
+        input,
+        textarea {
+            padding: 9px 12px;
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        button {
+            border: 0;
+            border-radius: 6px;
+            color: white;
+            background: #315efb;
+            cursor: pointer;
+        }
+
+        button.secondary {
+            background: #596275;
+        }
+
+        button.active {
+            background: #2ed573;
+        }
+
+        button:disabled {
+            background: #ced6e0;
+            cursor: not-allowed;
+        }
+
+        .description {
+            margin-top: 0;
+            color: #596275;
+        }
+
+        .app {
+            display: grid;
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .problem {
+            padding: 24px;
+            border: 1px solid #dfe4ea;
+            border-radius: 12px;
+            background: white;
+        }
+
+        .requirements {
+            padding: 14px 18px 14px 36px;
+            border-radius: 8px;
+            line-height: 1.7;
+            background: #f1f4ff;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 16px 0;
+            align-items: center;
+        }
+
+        .form-area {
+            display: grid;
+            gap: 10px;
+            max-width: 500px;
+        }
+
+        .form-area label {
+            display: grid;
+            gap: 5px;
+        }
+
+        .result {
+            min-height: 44px;
+            margin-top: 14px;
+            padding: 12px;
+            border: 1px dashed #a4b0be;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+
+        .preview {
+            padding: 18px;
+            border-left: 6px solid #2ed573;
+            background: #effff4;
+        }
+
+        .cart-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-row span.name {
+            flex: 1;
+        }
+
+        .todo-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>React State &amp; Event 연습문제 10선</h1>
+    <p class="description">각 컴포넌트 안의 TODO를 완성하세요.</p>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // 문제 1. 좋아요 토글 버튼
+        function LikeButton() {
+            const [isLiked, setIsLiked] = useState(false);
+
+            const handleToggle = () => {
+                setIsLiked(!isLiked);
+            };
+
+            return (
+                <section className="problem">
+                    <h2>문제 1. 좋아요 토글 버튼</h2>
+                    <ul className="requirements">
+                        <li><code>isLiked</code> boolean state를 <code>false</code>로 시작합니다.</li>
+                        <li>버튼을 누르면 true/false가 반전됩니다.</li>
+                        <li>상태에 따라 버튼 글자가 "🤍 좋아요" / "❤️ 좋아요 취소"로 바뀝니다.</li>
+                    </ul>
+                    <div className="controls">
+                        <button onClick={handleToggle}>
+                            {isLiked ? '❤️ 좋아요 취소' : '🤍 좋아요'}
+                        </button>
+                    </div>
+                </section>
+            );
+        }
+
+        // 문제 2. 별점 선택
+        function StarRating() {
+            const [rating, setRating] = useState(0);
+
+            const handleRate = (score) => {
+                setRating(score);
+            };
+
+            const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+
+            return (
+                <section className="problem">
+                    <h2>문제 2. 별점 선택</h2>
+                    <ul className="requirements">
+                        <li><code>rating</code> state를 0으로 시작합니다.</li>
+                        <li>1~5 버튼 중 하나를 누르면 그 숫자로 rating이 변경됩니다.</li>
+                        <li>현재 rating만큼 ★, 나머지는 ☆로 표시합니다. (예: rating이 3이면 ★★★☆☆)</li>
+                    </ul>
+                    <div className="controls">
+                        {[1, 2, 3, 4, 5].map((n) => (
+                            <button key={n} onClick={() => handleRate(n)}>{n}</button>
+                        ))}
+                    </div>
+                    <h3>{stars}</h3>
+                </section>
+            );
+        }
+
+        // 문제 3. 글자 수 제한 입력창
+        function LimitedTextarea() {
+            const MAX_LENGTH = 50;
+            const [text, setText] = useState('');
+
+            const handleChange = (event) => {
+                const value = event.target.value;
+                setText(value.length > MAX_LENGTH ? value.slice(0, MAX_LENGTH) : value);
+            };
+
+            return (
+                <section className="problem">
+                    <h2>문제 3. 글자 수 제한 입력창</h2>
+                    <ul className="requirements">
+                        <li>최대 {MAX_LENGTH}자까지만 입력할 수 있습니다. (그 이상은 잘림)</li>
+                        <li>현재 글자 수 / 최대 글자 수를 "12 / 50" 형태로 표시합니다.</li>
+                        <li>40자 이상 입력하면 글자 수 표시를 빨간색으로 바꿉니다.</li>
+                    </ul>
+                    <textarea
+                        rows="3"
+                        style={{ width: '100%' }}
+                        placeholder="최대 50자까지 입력하세요"
+                        value={text}
+                        onChange={handleChange}
+                    ></textarea>
+                    <p style={text.length >= 40 ? { color: 'red' } : undefined}>
+                        {text.length} / {MAX_LENGTH}
+                    </p>
+                </section>
+            );
+        }
+
+        // 문제 4. 다크모드 미리보기
+        function DarkModePreview() {
+            const [isDark, setIsDark] = useState(false);
+
+            return (
+                <section className="problem">
+                    <h2>문제 4. 다크모드 미리보기</h2>
+                    <ul className="requirements">
+                        <li>버튼을 누르면 isDark 상태가 토글됩니다.</li>
+                        <li>미리보기 박스의 배경색/글자색이 상태에 따라 바뀝니다. (inline style 사용)</li>
+                        <li>isDark가 true면 배경 #222 / 글자 white, false면 배경 white / 글자 #222</li>
+                    </ul>
+                    <div className="controls">
+                        <button onClick={() => setIsDark(!isDark)}>
+                            다크모드 전환
+                        </button>
+                    </div>
+                    <div
+                        className="result"
+                        style={{
+                            background: isDark ? '#222' : 'white',
+                            color: isDark ? 'white' : '#222'
+                        }}
+                    >
+                        미리보기 텍스트입니다.
+                    </div>
+                </section>
+            );
+        }
+
+        // 문제 5. 비밀번호 확인
+        function PasswordConfirm() {
+            const [password, setPassword] = useState('');
+            const [confirmPassword, setConfirmPassword] = useState('');
+
+            let message = null;
+            if (password !== '' && confirmPassword !== '') {
+                message = password === confirmPassword ? '✅ 일치합니다' : '❌ 일치하지 않습니다';
+            }
+
+            return (
+                <section className="problem">
+                    <h2>문제 5. 비밀번호 확인</h2>
+                    <ul className="requirements">
+                        <li>비밀번호, 비밀번호 확인 input을 각각 별도 state로 관리합니다.</li>
+                        <li>두 값이 하나라도 비어있으면 아무 메시지도 표시하지 않습니다.</li>
+                        <li>둘 다 입력됐을 때, 일치하면 "✅ 일치합니다", 다르면 "❌ 일치하지 않습니다"를 표시합니다.</li>
+                    </ul>
+                    <div className="form-area">
+                        <label>
+                            비밀번호
+                            <input
+                                type="password"
+                                placeholder="비밀번호"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            비밀번호 확인
+                            <input
+                                type="password"
+                                placeholder="비밀번호 확인"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
+                        </label>
+                    </div>
+                    <p>{message}</p>
+                </section>
+            );
+        }
+
+        // 문제 6. 취미 다중 선택
+        function HobbyChecklist() {
+            const options = ['독서', '운동', '게임', '요리', '여행'];
+            const [hobbies, setHobbies] = useState([]);
+
+            const handleCheck = (hobby) => {
+                if (hobbies.includes(hobby)) {
+                    setHobbies(hobbies.filter((h) => h !== hobby));
+                } else {
+                    setHobbies([...hobbies, hobby]);
+                }
+            };
+
+            return (
+                <section className="problem">
+                    <h2>문제 6. 취미 다중 선택</h2>
+                    <ul className="requirements">
+                        <li><code>hobbies</code> 배열 state를 빈 배열로 시작합니다.</li>
+                        <li>체크박스를 체크하면 배열에 추가, 체크 해제하면 배열에서 제거됩니다.</li>
+                        <li>선택한 취미들을 쉼표로 이어서 하단에 출력합니다. (없으면 "선택 없음")</li>
+                    </ul>
+                    <div className="controls">
+                        {options.map((hobby) => (
+                            <label key={hobby}>
+                                <input
+                                    type="checkbox"
+                                    checked={hobbies.includes(hobby)}
+                                    onChange={() => handleCheck(hobby)}
+                                />
+                                {hobby}
+                            </label>
+                        ))}
+                    </div>
+                    <p>{hobbies.length > 0 ? hobbies.join(', ') : '선택 없음'}</p>
+                </section>
+            );
+        }
+
+        // 문제 7. 장바구니 수량 조절
+        function CartQuantity() {
+            const [items, setItems] = useState([
+                { id: 1, name: '커피', price: 4500, quantity: 1 },
+                { id: 2, name: '샌드위치', price: 6000, quantity: 1 },
+                { id: 3, name: '쿠키', price: 3000, quantity: 1 },
+            ]);
+
+            const handleIncrease = (id) => {
+                setItems(items.map((item) =>
+                    item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+                ));
+            };
+
+            const handleDecrease = (id) => {
+                setItems(items.map((item) =>
+                    item.id === id && item.quantity > 0
+                        ? { ...item, quantity: item.quantity - 1 }
+                        : item
+                ));
+            };
+
+            const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+            return (
+                <section className="problem">
+                    <h2>문제 7. 장바구니 수량 조절</h2>
+                    <ul className="requirements">
+                        <li>상품마다 +/- 버튼으로 quantity를 조절합니다. (0 밑으로는 안 내려감)</li>
+                        <li>각 줄에 상품명, 가격, 수량을 표시합니다.</li>
+                        <li>하단에 전체 합계 금액을 표시합니다.</li>
+                    </ul>
+                    <div>
+                        {items.map((item) => (
+                            <div className="cart-row" key={item.id}>
+                                <span className="name">{item.name}</span>
+                                <span>{item.price.toLocaleString()}원</span>
+                                <button onClick={() => handleDecrease(item.id)}>-</button>
+                                <span>{item.quantity}</span>
+                                <button onClick={() => handleIncrease(item.id)}>+</button>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="result">
+                        총 합계: {total.toLocaleString()}원
+                    </div>
+                </section>
+            );
+        }
+
+        // 문제 8. 할 일 목록 추가/삭제
+        function TodoList() {
+            const [todos, setTodos] = useState([]);
+            const [inputValue, setInputValue] = useState('');
+
+            const handleAdd = () => {
+                if (inputValue === '') return;
+                setTodos([...todos, { id: Date.now(), text: inputValue }]);
+                setInputValue('');
+            };
+
+            const handleDelete = (id) => {
+                setTodos(todos.filter((todo) => todo.id !== id));
+            };
+
+            return (
+                <section className="problem">
+                    <h2>문제 8. 할 일 목록 추가/삭제</h2>
+                    <ul className="requirements">
+                        <li>input에 텍스트를 쓰고 추가 버튼을 누르면 목록에 새 항목이 생깁니다.</li>
+                        <li>빈 값일 때는 추가되지 않습니다.</li>
+                        <li>추가 후 input은 다시 빈 값으로 돌아갑니다.</li>
+                        <li>각 항목 옆 삭제 버튼을 누르면 그 항목만 사라집니다.</li>
+                    </ul>
+                    <div className="controls">
+                        <input
+                            type="text"
+                            placeholder="할 일을 입력하세요"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                        />
+                        <button onClick={handleAdd}>추가</button>
+                    </div>
+                    <div>
+                        {todos.map((todo) => (
+                            <div className="todo-row" key={todo.id}>
+                                <span>{todo.text}</span>
+                                <button className="secondary" onClick={() => handleDelete(todo.id)}>삭제</button>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            );
+        }
+
+        // 문제 9. 탭 전환 UI
+        function TabSwitcher() {
+            const tabs = [
+                { id: 'home', label: '홈', content: '홈 화면입니다.' },
+                { id: 'profile', label: '프로필', content: '프로필 화면입니다.' },
+                { id: 'settings', label: '설정', content: '설정 화면입니다.' },
+            ];
+            const [activeTab, setActiveTab] = useState('home');
+
+            const currentTab = tabs.find((tab) => tab.id === activeTab);
+
+            return (
+                <section className="problem">
+                    <h2>문제 9. 탭 전환 UI</h2>
+                    <ul className="requirements">
+                        <li>탭 버튼 3개(홈/프로필/설정) 중 클릭한 탭이 활성화됩니다.</li>
+                        <li>현재 활성화된 탭 버튼에 <code>active</code> 클래스가 적용됩니다.</li>
+                        <li>활성화된 탭에 맞는 content만 아래에 표시됩니다.</li>
+                    </ul>
+                    <div className="controls">
+                        {tabs.map((tab) => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id)}
+                                className={activeTab === tab.id ? 'active' : ''}
+                            >
+                                {tab.label}
+                            </button>
+                        ))}
+                    </div>
+                    <div className="result">
+                        {currentTab.content}
+                    </div>
+                </section>
+            );
+        }
+
+        // 문제 10. 로그인 폼 유효성 검사
+        function LoginValidation() {
+            const [form, setForm] = useState({ email: '', password: '' });
+
+            const handleChange = (event) => {
+                const { name, value } = event.target;
+                setForm({ ...form, [name]: value });
+            };
+
+            const isEmailValid = form.email.includes('@');
+            const isPasswordValid = form.password.length >= 8;
+
+            return (
+                <section className="problem">
+                    <h2>문제 10. 로그인 폼 유효성 검사</h2>
+                    <ul className="requirements">
+                        <li>이메일에 '@'가 포함되어 있는지 실시간으로 검사합니다.</li>
+                        <li>비밀번호가 8자 이상인지 실시간으로 검사합니다.</li>
+                        <li>각 input 옆에 조건을 만족하면 "✅", 아니면 "❌"를 표시합니다.</li>
+                        <li>이메일과 비밀번호가 모두 유효할 때만 로그인 버튼이 활성화됩니다. (그 전엔 disabled)</li>
+                    </ul>
+                    <div className="form-area">
+                        <label>
+                            이메일
+                            <input
+                                type="text"
+                                name="email"
+                                placeholder="이메일"
+                                value={form.email}
+                                onChange={handleChange}
+                            />
+                            {isEmailValid ? '✅' : '❌'}
+                        </label>
+                        <label>
+                            비밀번호
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="비밀번호 (8자 이상)"
+                                value={form.password}
+                                onChange={handleChange}
+                            />
+                            {isPasswordValid ? '✅' : '❌'}
+                        </label>
+                        <button disabled={!(isEmailValid && isPasswordValid)}>
+                            로그인
+                        </button>
+                    </div>
+                </section>
+            );
+        }
+
+        function App() {
+            return (
+                <main className="app">
+                    <LikeButton />
+                    <StarRating />
+                    <LimitedTextarea />
+                    <DarkModePreview />
+                    <PasswordConfirm />
+                    <HobbyChecklist />
+                    <CartQuantity />
+                    <TodoList />
+                    <TabSwitcher />
+                    <LoginValidation />
+                </main>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+
+</html>
