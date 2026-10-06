@@ -1,6 +1,6 @@
 # Learning Log
 
-개발 공부를 하며 만든 과제와 실습 결과물, 포트폴리오를 모아두는 저장소입니다.
+개발 공부를 하며 만든 과제와 실습 결과물을 모아두는 저장소입니다.
 <br>
 학습 기록은 [TIL 레포](https://github.com/staytraveler/TIL)에서 확인하실 수 있습니다.
 
@@ -14,6 +14,7 @@
 - self_quiz0917 📄 [코드 보기](./2026-bootcamp-sesac/react/self_quiz0917.html)
 - state_event-handling(260917) 📄 [코드 보기](./2026-bootcamp-sesac/react/state_event-handling.html)
 - component_props(260916) 📄 [코드 보기](./2026-bootcamp-sesac/react/component_props.html)
+- hooks_promise(260921) 📄 [코드 보기](./2026-bootcamp-sesac/react/hooks_promise.html)
 
 </details>
 <details>
@@ -71,6 +72,3 @@
 
 </details>
 
-## 🔗 포트폴리오
-- [librarian-exam-tracker](https://librarian-exam-tracker.vercel.app) — 사서직 임용시험 모의고사 회차별 성적 분석 도구 (배포 주소)
-  - [GitHub 저장소](https://github.com/staytraveler/librarian-exam-tracker)
